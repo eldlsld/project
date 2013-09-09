@@ -144,10 +144,10 @@ FOREIGN KEY(gid) REFERENCES genre(gid);
 
 **sign
 create table sign (
-	singid number(6),
+	signid number(6),
 	content varchar2(20),
-	date date,
-	primary key (singid)
+	signdate date,
+	primary key (signid)
 );
 
 create sequence seq_sign

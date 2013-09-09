@@ -1,7 +1,164 @@
+create user watermelon
+identified by watermelon;
+
+grant resource, connect to watermelon;
+
 event - eid, image, title, content
 news - nid, image, title, content, date
-member - mid, userid, username, password, address, phone, birth, que, ans, signid
+member - mid, userid, username, password, address, phone, birth, qid , ans , signid
 question - qid , content
-sing - sid, title, singer, write, gid, hit, date, writer, composer, album, albumpic, song
-genre- gid, content
-sign - signid, content, date, userid
+sing - sid , title, singer, write, gid , hit , date , writer , composer , album, albumpic ,song
+genre- gid,content
+sign - signid , content , date , userid
+
+**event
+create table event (
+	eid number(6),
+	image varchar2(50),
+	title varchar2(100),
+	content varchar2(2000),
+	primary key (eid)
+);
+
+create sequence seq_event
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_event.nextval from dual;
+select seq_event.currval from dual;
+
+**news
+create table news (
+	nid number(6),
+	image varchar2(50),
+	title varchar2(100),
+	content varchar2(2000),
+	ndate date,
+	primary key (nid)
+);
+
+create sequence seq_news
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_news.nextval from dual;
+select seq_news.currval from dual;
+
+**member
+create table member (
+	mid number(6),
+	userid varchar2(50),
+	username varchar2(50),
+	password varchar2(20),
+	address varchar2(100),
+	phone number(11),
+	birth varchar2(20),
+	qid number(6),
+	ans varchar2(20),
+	signid number(6),
+	primary key (mid)
+);
+
+create sequence seq_member
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_member.nextval from dual;
+select seq_member.currval from dual;
+
+**question
+create table question (
+	qid number(6),
+	content varchar2(50),
+	primary key (qid)
+);
+
+create sequence seq_question
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_question.nextval from dual;
+select seq_question.currval from dual;
+
+ALTER TABLE member ADD CONSTRAINT mid_fk
+FOREIGN KEY(qid) REFERENCES question(qid);
+
+**sing
+create table sing (
+	sid number(6),
+	title varchar2(100),
+	singer varchar2(50),
+	write varchar2(100),
+	gid number(6),
+	hit number(10),
+	sdate date,
+	writer varchar2(50),
+	composer varchar2(50),
+	album varchar2(50),
+	albumpic varchar2(50),
+	song varchar2(50),
+	primary key (sid)
+);
+
+create sequence seq_sing
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_sing.nextval from dual;
+select seq_sing.currval from dual;
+
+**genre
+create table genre (
+	gid number(6),
+	content varchar2(20),
+	primary key (gid)
+);
+
+create sequence seq_genre
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_genre.nextval from dual;
+select seq_genre.currval from dual;
+
+ALTER TABLE sing ADD CONSTRAINT sid_fk
+FOREIGN KEY(gid) REFERENCES genre(gid);
+
+**sign
+create table sign (
+	singid number(6),
+	content varchar2(20),
+	date date,
+	primary key (singid)
+);
+
+create sequence seq_sign
+increment by 1
+start with 1
+maxvalue 99999
+nocycle
+nocache
+
+select seq_sign.nextval from dual;
+select seq_sign.currval from dual;
+
+ALTER TABLE member ADD CONSTRAINT mid_fk
+FOREIGN KEY(signid) REFERENCES sign(signid);

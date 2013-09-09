@@ -1,6 +1,5 @@
 body {
 	font-size : 10px;
-	height: 800px;
 }
 body:HOVER {
 	color:green;
@@ -8,7 +7,10 @@ body:HOVER {
 }
 #top {
 		height: 150px;
-	}
+}
+#center {
+	height: 550px;
+}
 #bottom {
 		height: 100px;
-	}
+}

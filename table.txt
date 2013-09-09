@@ -1,7 +1,7 @@
 event - eid, image, title, content
 news - nid, image, title, content, date
-member - mid, userid, username, password, address, phone, birth, que , ans , signid
+member - mid, userid, username, password, address, phone, birth, que, ans, signid
 question - qid , content
-sing - sid , title, singer, write, gid , hit , date , writer , composer , album, albumpic ,song
-genre- gid,content
-sign - signid , content , date , userid
+sing - sid, title, singer, write, gid, hit, date, writer, composer, album, albumpic, song
+genre- gid, content
+sign - signid, content, date, userid
